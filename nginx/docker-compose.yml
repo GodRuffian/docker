@@ -1,0 +1,15 @@
+version: "2"
+
+services:
+    nginx:
+        container_name: "nginx"
+        image: "nginx:alpine"
+        volumes: #可以使用绝对路径
+            - "./etc/nginx/conf.d:/etc/nginx/conf.d:ro"
+            - "./var/log:/var/log/nginx"
+            - "./nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
+        restart: "always" # always, on-failure, no
+        expose: "8080:80"
+        links:
+          - "web"
+
